@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>PHP练习题-字符串篇 | 小朱的技术博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="小朱的技术博客空间" />
+  
+  <meta name="description" content="字符串篇1.定义一个生成随机字符串的函数1234567891011121314&#x2F;** * 生成随机字符串 * @param int $length 长度 * @return string *&#x2F;function generate_random_string(int $length&#x3D;10)&amp;#123;    $chars &#x3D; &amp;#x27;0123456789abcdefghijklmnopqrstuv">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP练习题-字符串篇">
+<meta property="og:url" content="https://zhuxv.github.io/2020/09/24/PHP%E7%BB%83%E4%B9%A0%E9%A2%98-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%AF%87/index.html">
+<meta property="og:site_name" content="小朱的技术博客">
+<meta property="og:description" content="字符串篇1.定义一个生成随机字符串的函数1234567891011121314&#x2F;** * 生成随机字符串 * @param int $length 长度 * @return string *&#x2F;function generate_random_string(int $length&#x3D;10)&amp;#123;    $chars &#x3D; &amp;#x27;0123456789abcdefghijklmnopqrstuv">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-09-24T08:47:53.000Z">
+<meta property="article:modified_time" content="2020-09-24T09:05:47.716Z">
+<meta property="article:author" content="Zhu Xv">
+<meta property="article:tag" content="PHP">
+<meta property="article:tag" content="练习题">
+<meta property="article:tag" content="字符串">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+
+  
+  
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">小朱的空间</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>首页</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>归档</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>关于</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/zhuxv.gif" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        小朱的空间
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        林深时见鹿,海蓝时见鲸,梦醒时见你
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Index" target="_blank" href="//zhuxv.github.io">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/zhuxv">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/zhuxv">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Twitter" target="_blank" ">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-PHP练习题-字符串篇" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      PHP练习题-字符串篇
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/PHP/">PHP</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2020-09-24
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h4 id="字符串篇"><a href="#字符串篇" class="headerlink" title="字符串篇"></a>字符串篇</h4><h5 id="1-定义一个生成随机字符串的函数"><a href="#1-定义一个生成随机字符串的函数" class="headerlink" title="1.定义一个生成随机字符串的函数"></a>1.定义一个生成随机字符串的函数</h5><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 生成随机字符串</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> int $length 长度</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> string</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">generate_random_string</span>(<span class="params"><span class="keyword">int</span> $length=<span class="number">10</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $chars = <span class="string">&#x27;0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&#x27;</span>;</span><br><span class="line">    $randomString = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    <span class="keyword">for</span> ( $i=<span class="number">0</span>; $i&lt;$length; $i++ ) &#123;</span><br><span class="line">        $randomString .= $chars[rand(<span class="number">0</span>, strlen($chars)<span class="number">-1</span>)];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> $randomString;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2020年09月24日 17:05</p>
+        <p>原始链接： <a class="post-url" href="/2020/09/24/PHP%E7%BB%83%E4%B9%A0%E9%A2%98-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%AF%87/" title="PHP练习题-字符串篇">https://zhuxv.github.io/2020/09/24/PHP%E7%BB%83%E4%B9%A0%E9%A2%98-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%AF%87/</a></p>
+        <footer>
+            <a href="https://zhuxv.github.io">
+                <img src="/images/zhuxv.gif" alt="Zhu Xv">
+                Zhu Xv
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.png" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.png">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.png">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhuxv.github.io/2020/09/24/PHP%E7%BB%83%E4%B9%A0%E9%A2%98-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%AF%87/&title=《PHP练习题-字符串篇》 — 小朱的技术博客&pic=images/php_subject.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhuxv.github.io/2020/09/24/PHP%E7%BB%83%E4%B9%A0%E9%A2%98-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%AF%87/&title=《PHP练习题-字符串篇》 — 小朱的技术博客&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhuxv.github.io/2020/09/24/PHP%E7%BB%83%E4%B9%A0%E9%A2%98-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%AF%87/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《PHP练习题-字符串篇》 — 小朱的技术博客&url=https://zhuxv.github.io/2020/09/24/PHP%E7%BB%83%E4%B9%A0%E9%A2%98-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%AF%87/&via=https://zhuxv.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhuxv.github.io/2020/09/24/PHP%E7%BB%83%E4%B9%A0%E9%A2%98-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%AF%87/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://zhuxv.github.io/2020/09/24/PHP%E7%BB%83%E4%B9%A0%E9%A2%98-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%AF%87/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/PHP/" class="color4">PHP</a>
+      
+    <a href="/tags/练习题/" class="color4">练习题</a>
+      
+    <a href="/tags/字符串/" class="color4">字符串</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%AF%87"><span class="post-toc-text">字符串篇</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#1-%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%87%BD%E6%95%B0"><span class="post-toc-text">1.定义一个生成随机字符串的函数</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+  
+    <a href="/2020/09/24/PHP%E8%81%94%E7%B3%BB%E9%A2%98-%E6%95%B0%E7%BB%84%E7%AF%87/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">PHP练习题-数组篇</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2020 Zhu Xv<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://zhuxv.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/PHP/">PHP</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/PHP/" style="font-size: 20px;">PHP</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 10px;">字符串</a> <a href="/tags/%E6%95%B0%E7%BB%84/" style="font-size: 10px;">数组</a> <a href="/tags/%E7%BB%83%E4%B9%A0%E9%A2%98/" style="font-size: 20px;">练习题</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>首页</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>归档</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/PHP/" style="font-size: 20px;">PHP</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 10px;">字符串</a> <a href="/tags/%E6%95%B0%E7%BB%84/" style="font-size: 10px;">数组</a> <a href="/tags/%E7%BB%83%E4%B9%A0%E9%A2%98/" style="font-size: 20px;">练习题</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/Epsilon2.1.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>
