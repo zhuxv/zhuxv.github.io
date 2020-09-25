@@ -3,19 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>about | 小朱的技术博客</title>
+  <title>apache与nginx的区别 | 小朱的技术博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="小朱的技术博客空间" />
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="https://zhuxv.github.io/about/index.html">
+  <meta name="description" content="apache与nginx的区别记录一下apache与nginx的区别, 以便在工作中可以正确选择">
+<meta property="og:type" content="article">
+<meta property="og:title" content="apache与nginx的区别">
+<meta property="og:url" content="https://zhuxv.github.io/2020/09/25/apache%E4%B8%8Enginx%E7%9A%84%E5%8C%BA%E5%88%AB/index.html">
 <meta property="og:site_name" content="小朱的技术博客">
+<meta property="og:description" content="apache与nginx的区别记录一下apache与nginx的区别, 以便在工作中可以正确选择">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-09-24T05:17:40.000Z">
-<meta property="article:modified_time" content="2020-09-24T05:17:40.653Z">
+<meta property="article:published_time" content="2020-09-25T02:06:57.000Z">
+<meta property="article:modified_time" content="2020-09-25T09:15:40.159Z">
 <meta property="article:author" content="Zhu Xv">
+<meta property="article:tag" content="练习题">
+<meta property="article:tag" content="系统">
 <meta name="twitter:card" content="summary">
   
   
@@ -111,20 +115,27 @@
     </div>
 </header>
       <div class="outer">
-        <section id="main" class="body-wrap"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+        <section id="main" class="body-wrap"><article id="post-apache与nginx的区别" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="post-title" itemprop="name">
-      about
+      apache与nginx的区别
     </h1>
     <div class="post-title-bar">
       <ul>
           
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/系统/">系统</a>
+                  
+              </li>
+          
         <li>
-          <i class="fa fa-calendar"></i>  2020-09-24
+          <i class="fa fa-calendar"></i>  2020-09-25
         </li>
         <li>
           <i class="fa fa-eye"></i>
@@ -137,10 +148,30 @@
           
       </header>
     
-    <div class="article-entry " itemprop="articleBody">
+    <div class="article-entry post-content" itemprop="articleBody">
       
             
-            
+            <h4 id="apache与nginx的区别"><a href="#apache与nginx的区别" class="headerlink" title="apache与nginx的区别"></a>apache与nginx的区别</h4><p>记录一下apache与nginx的区别, 以便在工作中可以正确选择</p>
+<a id="more"></a>
+<h5 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx:"></a>Nginx:</h5><pre><code>1.轻量级, 采用C编写, 同样的web服务, 会占用更少的内存及资源
+2.抗并发, 处理请求是异步非阻塞的, 负载能力比 apache 高很多, 而 apache 则是阻塞型的. 在高并发下 nginx 能保持低资源低消耗高性能, 而 apache 在 PHP 处理慢或者前端压力很大的情况下, 很容易出现进程数飙升, 从而拒绝服务现象
+3.nginx 处理静态文件好, 静态处理性能是 apache 的三倍以上
+4.nginx 的设计高度模块化, 编写模块相对简单
+5.nginx 配置简洁, 正则配置让很多事情变得简单, 而且改完配置能使用 nginx -t 测试配置有没有问题, apache 配置复杂, 重启之后发现配置错误,会很崩溃
+6.nginx 作为负载均衡服务器, 支持 7 层负载均衡
+7.nginx 本身就是一个反向代理服务器, 而且可以作为非常优秀的邮件代理服务器
+8.启动特别容易, 并且可以做到 24 小时不断运行, 即使运行数月也不需要重新启动, 还能够不间断服务的情况下进行版本升级
+9.社区活跃, 各种高性能模块出品迅速</code></pre>
+<h5 id="Apache"><a href="#Apache" class="headerlink" title="Apache:"></a>Apache:</h5><pre><code>1.apache 的 rewrite 比 nginx 强大, 在 rewrite 频繁的情况下, 用 apache
+2.apache 发展到现在, 模块超多, 基本想到的都可以找到
+3.apache 更为成熟, 少 BUG, nginx BUG 相对比较多
+4.apache 非常稳定
+5.apache 对 PHP 支持比较简单, nginx 需配合其他后端用
+6.apache 在处理动态请求的时候有优势, nginx 在这方面是鸡肋, 一般动态请求要 apache 去做, nginx 适合反向和静态
+7.apache 仍然是目前的主流, 拥有丰富的特性, 成熟的技术和开发社区</code></pre>
+<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><p>两者最核心的区别在于 apache 是同步多进程模型, 一个连接对应一个进程, 而 nginx 是异步的, 多连接可以对应一个进程<br>一般来说, 需要性能的 web 服务, 用 nginx, 如果不需要性能只要求稳定的服务, 更考虑的是 apache, 后者各种功能模块实现的比前者好, 可配置项多<br>更为通用的方案是, 前端 nginx 抗并发, 后端 apache 集群, 配合起来会更好</p>
+<blockquote><p>参考博文<br>[1] <a target="_blank" rel="noopener" href="https://www.cnblogs.com/changning0822/p/7844004.html">Apache和Nginx的区别</a></p>
+</blockquote>
             
                 <div>
 <ul class="post-copyright" id="copyright">
@@ -149,7 +180,7 @@
   </li>
   <li class="post-copyright-link">
   <strong>文章连结:  </strong>
-  <a href="/about/index.html" target="_blank" title="about">https://zhuxv.github.io/about/index.html</a>
+  <a href="/2020/09/25/apache与nginx的区别/" target="_blank" title="apache与nginx的区别">https://zhuxv.github.io/2020/09/25/apache与nginx的区别/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明:   </strong>
@@ -206,7 +237,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhuxv.github.io/about/&title=《about》 — 小朱的技术博客&pic=https://zhuxv.github.ioimages/zhuxv.gif" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhuxv.github.io/2020/09/25/apache%E4%B8%8Enginx%E7%9A%84%E5%8C%BA%E5%88%AB/&title=《apache与nginx的区别》 — 小朱的技术博客&pic=images/article/nginx_apache.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -216,22 +247,22 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhuxv.github.io/about/&title=《about》 — 小朱的技术博客&source=" data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhuxv.github.io/2020/09/25/apache%E4%B8%8Enginx%E7%9A%84%E5%8C%BA%E5%88%AB/&title=《apache与nginx的区别》 — 小朱的技术博客&source=apache与nginx的区别记录一下apache与nginx的区别, 以便在工作中可以正确选择" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhuxv.github.io/about/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhuxv.github.io/2020/09/25/apache%E4%B8%8Enginx%E7%9A%84%E5%8C%BA%E5%88%AB/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《about》 — 小朱的技术博客&url=https://zhuxv.github.io/about/&via=https://zhuxv.github.io" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《apache与nginx的区别》 — 小朱的技术博客&url=https://zhuxv.github.io/2020/09/25/apache%E4%B8%8Enginx%E7%9A%84%E5%8C%BA%E5%88%AB/&via=https://zhuxv.github.io" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhuxv.github.io/about/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhuxv.github.io/2020/09/25/apache%E4%B8%8Enginx%E7%9A%84%E5%8C%BA%E5%88%AB/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -241,7 +272,7 @@
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://zhuxv.github.io/about/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://zhuxv.github.io/2020/09/25/apache%E4%B8%8Enginx%E7%9A%84%E5%8C%BA%E5%88%AB/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -250,6 +281,15 @@
         <ul class="article-footer-menu">
             
             
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/练习题/" class="color4">练习题</a>
+      
+    <a href="/tags/系统/" class="color3">系统</a>
+      
+  </li>
+
         </ul>
         
     </footer>
@@ -257,6 +297,32 @@
 </article>
 
 
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#apache%E4%B8%8Enginx%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="post-toc-text">apache与nginx的区别</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#Nginx"><span class="post-toc-text">Nginx:</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#Apache"><span class="post-toc-text">Apache:</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#%E6%80%BB%E7%BB%93"><span class="post-toc-text">总结</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2020/09/25/PHP%E7%BB%83%E4%B9%A0%E9%A2%98-MySQL%E7%AF%87/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          PHP练习题-MySQL篇
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2020/09/25/PHP%E7%BB%83%E4%B9%A0%E9%A2%98-%E5%9F%BA%E7%A1%80%E7%AF%87/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">PHP练习题-基础篇</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
 
 
 
