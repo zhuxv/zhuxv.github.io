@@ -16,7 +16,7 @@
 <meta property="og:description" content="MySQL篇">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-09-25T06:17:43.000Z">
-<meta property="article:modified_time" content="2020-09-25T10:21:17.918Z">
+<meta property="article:modified_time" content="2020-09-27T08:09:45.863Z">
 <meta property="article:author" content="Zhu Xv">
 <meta property="article:tag" content="MySQL">
 <meta property="article:tag" content="练习题">
@@ -236,6 +236,14 @@
 不拆带来的问题: 查询性能
 如果能容忍拆分带来的空间问题: 拆的话最好和经常要查询的表的主键在物理结构上放置在一起(分区)顺序IO,减少连接消耗, 最后这是一个文本列再加上一个全文索引来尽量抵消连接消耗
 如果能容忍不拆分带来的查询性能损失的话: 上面的方案在某个极致条件下肯定会出现问题, 那么不拆是最好的选择</code></pre>
+<h5 id="11-MySQL中InnoDB引擎的行锁是通过加在什么上实现的-为什么"><a href="#11-MySQL中InnoDB引擎的行锁是通过加在什么上实现的-为什么" class="headerlink" title="11.MySQL中InnoDB引擎的行锁是通过加在什么上实现的,为什么"></a>11.MySQL中InnoDB引擎的行锁是通过加在什么上实现的,为什么</h5><pre><code>InnoDB 是基于索引来完成行锁
+    例: select * from `table` where id=1 for update;
+for update 可以根据条件来完成行锁锁定, 并且 id 是有索引键的列, 如果 id 不是索引键, 那么 InnoDB 将完成表锁, 只有在 InnoDB 引擎和事务中才能生效</code></pre>
+<h5 id="12-开放性问题"><a href="#12-开放性问题" class="headerlink" title="12.开放性问题:"></a>12.开放性问题:</h5><pre><code>一个6亿的表a, 一个3亿的表b, 通过外键 tid 关联, 你如何最快的查询出满足条件的第 50000-50200 的 200 条数据的记录
+    1. 如果a表 tid 是自增长的, 并且是连续的, b表的 ID 为索引
+        select * from a,b where a.tid = b.id and a.tid &gt; 50000 limit 200;
+    2. 如果a表的 tid 不是连续增长的, 那么就需要使用覆盖索引. tid 要么是主键, 要么是辅助索引, b表 ID 也要有索引
+        select * from b, (select tid from a limit 50000,200) a where b.id = a.tid</code></pre>
 <blockquote><p>参考博文<br>[1] <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/977a9e7d80b3">【MySQL】20个经典面试题</a><br>[2] <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38789941/article/details/83744271">sql优化的几种方式</a><br>[3] <a target="_blank" rel="noopener" href="http://www.360doc.com/content/14/0517/00/17448319_378391755.shtml">关于mysql innodb引擎性能优化的一点心得</a></p>
 </blockquote>
             
@@ -365,12 +373,22 @@
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#MySQL%E7%AF%87"><span class="post-toc-text">MySQL篇</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#1-MySQL%E7%9A%84%E5%A4%8D%E5%88%B6%E5%8E%9F%E7%90%86%E5%8F%8A%E5%85%B6%E6%B5%81%E7%A8%8B"><span class="post-toc-text">1.MySQL的复制原理及其流程:</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#2-MySQL%E4%B8%ADMyISAM%E4%B8%8EInnoDB%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="post-toc-text">2.MySQL中MyISAM与InnoDB的区别:</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#3-MySQL%E4%B8%ADvarchar%E4%B8%8Echar%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BB%A5%E5%8F%8Avarchar-50-%E4%B8%AD%E7%9A%8450%E4%BB%A3%E8%A1%A8%E7%9A%84%E5%90%AB%E4%B9%89"><span class="post-toc-text">3.MySQL中varchar与char的区别以及varchar(50)中的50代表的含义:</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#4-InnoDB%E4%BA%8B%E5%8A%A1%E4%B8%8E%E6%97%A5%E5%BF%97%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="post-toc-text">4.InnoDB事务与日志的实现方式</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#5-MySQL-binlog%E7%9A%84%E5%87%A0%E7%A7%8D%E6%97%A5%E5%BF%97%E5%BD%95%E5%85%A5%E6%A0%BC%E5%BC%8F%E4%BB%A5%E5%8F%8A%E5%8C%BA%E5%88%AB"><span class="post-toc-text">5.MySQL binlog的几种日志录入格式以及区别</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#6-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93CPU%E9%A3%99%E5%8D%87%E5%88%B0500-%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86"><span class="post-toc-text">6.MySQL数据库CPU飙升到500%如何处理</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#7-sql%E4%BC%98%E5%8C%96"><span class="post-toc-text">7.sql优化</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#8-InnoDB%E7%9A%84%E8%AF%BB%E5%86%99%E5%8F%82%E6%95%B0%E4%BC%98%E5%8C%96"><span class="post-toc-text">8.InnoDB的读写参数优化</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#9-%E4%BD%A0%E4%BB%AC%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E6%98%AF%E5%90%A6%E6%94%AF%E6%8C%81emoji%E8%A1%A8%E6%83%85-%E5%A6%82%E6%9E%9C%E4%B8%8D%E6%94%AF%E6%8C%81-%E5%BA%94%E8%AF%A5%E6%80%8E%E4%B9%88%E5%81%9A"><span class="post-toc-text">9.你们的数据库是否支持emoji表情, 如果不支持, 应该怎么做</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#10-%E8%A1%A8%E4%B8%AD%E6%9C%89%E5%A4%A7%E5%AD%97%E6%AE%B5x-%E4%BE%8B%E5%A6%82-text%E7%B1%BB%E5%9E%8B-%E4%B8%94%E5%AD%97%E6%AE%B5x%E4%B8%8D%E4%BC%9A%E7%BB%8F%E5%B8%B8%E6%9B%B4%E6%96%B0-%E5%B7%B2%E8%AF%BB%E4%B8%BA%E4%B8%BB-%E4%BD%A0%E4%BC%9A%E9%80%89%E6%8B%A9%E6%8B%86%E6%88%90%E5%AD%90%E8%A1%A8%E8%BF%98%E6%98%AF%E6%94%BE%E5%9C%A8%E4%B8%80%E8%B5%B7-%E7%90%86%E7%94%B1"><span class="post-toc-text">10.表中有大字段x(例如: text类型),且字段x不会经常更新,已读为主,你会选择拆成子表还是放在一起,理由?</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#MySQL%E7%AF%87"><span class="post-toc-text">MySQL篇</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#1-MySQL%E7%9A%84%E5%A4%8D%E5%88%B6%E5%8E%9F%E7%90%86%E5%8F%8A%E5%85%B6%E6%B5%81%E7%A8%8B"><span class="post-toc-text">1.MySQL的复制原理及其流程:</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#2-MySQL%E4%B8%ADMyISAM%E4%B8%8EInnoDB%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="post-toc-text">2.MySQL中MyISAM与InnoDB的区别:</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#3-MySQL%E4%B8%ADvarchar%E4%B8%8Echar%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BB%A5%E5%8F%8Avarchar-50-%E4%B8%AD%E7%9A%8450%E4%BB%A3%E8%A1%A8%E7%9A%84%E5%90%AB%E4%B9%89"><span class="post-toc-text">3.MySQL中varchar与char的区别以及varchar(50)中的50代表的含义:</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#4-InnoDB%E4%BA%8B%E5%8A%A1%E4%B8%8E%E6%97%A5%E5%BF%97%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="post-toc-text">4.InnoDB事务与日志的实现方式</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#5-MySQL-binlog%E7%9A%84%E5%87%A0%E7%A7%8D%E6%97%A5%E5%BF%97%E5%BD%95%E5%85%A5%E6%A0%BC%E5%BC%8F%E4%BB%A5%E5%8F%8A%E5%8C%BA%E5%88%AB"><span class="post-toc-text">5.MySQL binlog的几种日志录入格式以及区别</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#6-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93CPU%E9%A3%99%E5%8D%87%E5%88%B0500-%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86"><span class="post-toc-text">6.MySQL数据库CPU飙升到500%如何处理</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#7-sql%E4%BC%98%E5%8C%96"><span class="post-toc-text">7.sql优化</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#8-InnoDB%E7%9A%84%E8%AF%BB%E5%86%99%E5%8F%82%E6%95%B0%E4%BC%98%E5%8C%96"><span class="post-toc-text">8.InnoDB的读写参数优化</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#9-%E4%BD%A0%E4%BB%AC%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E6%98%AF%E5%90%A6%E6%94%AF%E6%8C%81emoji%E8%A1%A8%E6%83%85-%E5%A6%82%E6%9E%9C%E4%B8%8D%E6%94%AF%E6%8C%81-%E5%BA%94%E8%AF%A5%E6%80%8E%E4%B9%88%E5%81%9A"><span class="post-toc-text">9.你们的数据库是否支持emoji表情, 如果不支持, 应该怎么做</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#10-%E8%A1%A8%E4%B8%AD%E6%9C%89%E5%A4%A7%E5%AD%97%E6%AE%B5x-%E4%BE%8B%E5%A6%82-text%E7%B1%BB%E5%9E%8B-%E4%B8%94%E5%AD%97%E6%AE%B5x%E4%B8%8D%E4%BC%9A%E7%BB%8F%E5%B8%B8%E6%9B%B4%E6%96%B0-%E5%B7%B2%E8%AF%BB%E4%B8%BA%E4%B8%BB-%E4%BD%A0%E4%BC%9A%E9%80%89%E6%8B%A9%E6%8B%86%E6%88%90%E5%AD%90%E8%A1%A8%E8%BF%98%E6%98%AF%E6%94%BE%E5%9C%A8%E4%B8%80%E8%B5%B7-%E7%90%86%E7%94%B1"><span class="post-toc-text">10.表中有大字段x(例如: text类型),且字段x不会经常更新,已读为主,你会选择拆成子表还是放在一起,理由?</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#11-MySQL%E4%B8%ADInnoDB%E5%BC%95%E6%93%8E%E7%9A%84%E8%A1%8C%E9%94%81%E6%98%AF%E9%80%9A%E8%BF%87%E5%8A%A0%E5%9C%A8%E4%BB%80%E4%B9%88%E4%B8%8A%E5%AE%9E%E7%8E%B0%E7%9A%84-%E4%B8%BA%E4%BB%80%E4%B9%88"><span class="post-toc-text">11.MySQL中InnoDB引擎的行锁是通过加在什么上实现的,为什么</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#12-%E5%BC%80%E6%94%BE%E6%80%A7%E9%97%AE%E9%A2%98"><span class="post-toc-text">12.开放性问题:</span></a></li></ol></li></ol>
         </nav>
     </aside>
     
 
 <nav id="article-nav">
+  
+    <a href="/2020/09/27/PHP%E7%BB%83%E4%B9%A0%E9%A2%98-REDIS%E7%AF%87/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          PHP练习题-REDIS篇
+        
+      </span>
+    </a>
   
   
     <a href="/2020/09/25/apache%E4%B8%8Enginx%E7%9A%84%E5%8C%BA%E5%88%AB/" id="article-nav-older" class="article-nav-link-wrap">
@@ -427,10 +445,10 @@
 <div class="sidebar-menu-box" id="sidebar-menu-box">
     <div class="sidebar-menu-box-container">
         <div id="sidebar-menu-box-categories">
-            <a class="category-link" href="/categories/MySQL/">MySQL</a><a class="category-link" href="/categories/PHP/">PHP</a><a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F/">系统</a>
+            <a class="category-link" href="/categories/MySQL/">MySQL</a><a class="category-link" href="/categories/PHP/">PHP</a><a class="category-link" href="/categories/REDIS/">REDIS</a><a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F/">系统</a>
         </div>
         <div id="sidebar-menu-box-tags">
-            <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 10px;">字符串</a> <a href="/tags/%E6%95%B0%E7%BB%84/" style="font-size: 10px;">数组</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">系统</a> <a href="/tags/%E7%BB%83%E4%B9%A0%E9%A2%98/" style="font-size: 20px;">练习题</a>
+            <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/REDIS/" style="font-size: 10px;">REDIS</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 10px;">字符串</a> <a href="/tags/%E6%95%B0%E7%BB%84/" style="font-size: 10px;">数组</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">系统</a> <a href="/tags/%E7%BB%83%E4%B9%A0%E9%A2%98/" style="font-size: 20px;">练习题</a>
         </div>
     </div>
     <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
@@ -463,7 +481,7 @@
     <div class="mobile-header-tag-container">
         <span class="title">Tags</span>
         <div id="mobile-header-container-tags">
-            <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 10px;">字符串</a> <a href="/tags/%E6%95%B0%E7%BB%84/" style="font-size: 10px;">数组</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">系统</a> <a href="/tags/%E7%BB%83%E4%B9%A0%E9%A2%98/" style="font-size: 20px;">练习题</a>
+            <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/REDIS/" style="font-size: 10px;">REDIS</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 10px;">字符串</a> <a href="/tags/%E6%95%B0%E7%BB%84/" style="font-size: 10px;">数组</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">系统</a> <a href="/tags/%E7%BB%83%E4%B9%A0%E9%A2%98/" style="font-size: 20px;">练习题</a>
         </div>
     </div>
 </div>
