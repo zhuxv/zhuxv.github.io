@@ -3,23 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>PHP练习题-REDIS篇 | 小朱的技术博客</title>
+  <title>常见的几种WEB攻击 | 小朱的技术博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="小朱的技术博客空间" />
   
-  <meta name="description" content="REDIS篇REDIS 练习笔记">
+  <meta name="description" content="搞Web开发离不开安全这个话题，确保网站或者网页应用的安全性，是每个开发人员都应该了解的事。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PHP练习题-REDIS篇">
-<meta property="og:url" content="https://zhuxv.github.io/2020/09/27/PHP%E7%BB%83%E4%B9%A0%E9%A2%98-REDIS%E7%AF%87/index.html">
+<meta property="og:title" content="常见的几种WEB攻击">
+<meta property="og:url" content="https://zhuxv.github.io/2020/09/29/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8DWEB%E6%94%BB%E5%87%BB/index.html">
 <meta property="og:site_name" content="小朱的技术博客">
-<meta property="og:description" content="REDIS篇REDIS 练习笔记">
+<meta property="og:description" content="搞Web开发离不开安全这个话题，确保网站或者网页应用的安全性，是每个开发人员都应该了解的事。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-09-27T08:16:51.000Z">
-<meta property="article:modified_time" content="2020-09-27T10:14:55.127Z">
+<meta property="article:published_time" content="2020-09-29T09:43:26.000Z">
+<meta property="article:modified_time" content="2020-09-30T08:53:45.482Z">
 <meta property="article:author" content="Zhu Xv">
-<meta property="article:tag" content="练习题">
-<meta property="article:tag" content="REDIS">
+<meta property="article:tag" content="WEB">
+<meta property="article:tag" content="安全">
 <meta name="twitter:card" content="summary">
   
   
@@ -115,14 +115,14 @@
     </div>
 </header>
       <div class="outer">
-        <section id="main" class="body-wrap"><article id="post-PHP练习题-REDIS篇" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main" class="body-wrap"><article id="post-常见的几种WEB攻击" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="post-title" itemprop="name">
-      PHP练习题-REDIS篇
+      常见的几种WEB攻击
     </h1>
     <div class="post-title-bar">
       <ul>
@@ -130,12 +130,12 @@
               <li>
                   <i class="fa fa-book"></i>
                   
-                      <a href="/categories/REDIS/">REDIS</a>
+                      <a href="/categories/WEB/">WEB</a>
                   
               </li>
           
         <li>
-          <i class="fa fa-calendar"></i>  2020-09-27
+          <i class="fa fa-calendar"></i>  2020-09-29
         </li>
         <li>
           <i class="fa fa-eye"></i>
@@ -151,56 +151,48 @@
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <h4 id="REDIS篇"><a href="#REDIS篇" class="headerlink" title="REDIS篇"></a>REDIS篇</h4><p>REDIS 练习笔记</p>
+            <p>搞Web开发离不开安全这个话题，确保网站或者网页应用的安全性，是每个开发人员都应该了解的事。</p>
 <a id="more"></a>
-<h5 id="1-redis和memcached相比有哪些优势"><a href="#1-redis和memcached相比有哪些优势" class="headerlink" title="1.redis和memcached相比有哪些优势"></a>1.redis和memcached相比有哪些优势</h5><pre><code>memcached 所有的值均是简单的字符串, redis 做为其代替者, 支持更丰富的数据类型
-redis 的速度比 memcached 快很多
-redis 可以持久化其数据</code></pre>
-<h5 id="2-redis是单线程"><a href="#2-redis是单线程" class="headerlink" title="2.redis是单线程"></a>2.redis是单线程</h5><pre><code>redis 利用队列技术将并发访问变成串行访问, 消除了传统数据库串行控制的开销</code></pre>
-<h5 id="3-redis的五种数据类型"><a href="#3-redis的五种数据类型" class="headerlink" title="3.redis的五种数据类型"></a>3.redis的五种数据类型</h5><pre><code>string, list, set, sorted set, hash</code></pre>
-<h5 id="4-redis的并发竞争问题如何解决"><a href="#4-redis的并发竞争问题如何解决" class="headerlink" title="4.redis的并发竞争问题如何解决"></a>4.redis的并发竞争问题如何解决</h5><pre><code>单线程单进程模式, 采用队列模式将并发访问改为串行访问. redis 本身没有锁的概念, redis 对于多个客户端连接不存在竞争, 利用 setnx 实现锁</code></pre>
-<h5 id="5-redis启动命令"><a href="#5-redis启动命令" class="headerlink" title="5.redis启动命令"></a>5.redis启动命令</h5><pre><code>./redis-server</code></pre>
-<h5 id="6-redis-支持的语言"><a href="#6-redis-支持的语言" class="headerlink" title="6.redis 支持的语言"></a>6.redis 支持的语言</h5><pre><code>Java, C, C#, C++, PHP, Node.js GO 等</code></pre>
-<h5 id="7-redis-持久化解决方案"><a href="#7-redis-持久化解决方案" class="headerlink" title="7.redis 持久化解决方案"></a>7.redis 持久化解决方案</h5><pre><code>RDB
-    RDB 持久化是把当前进程数据生成快照保存到硬盘的过程, 触发 RDB 持久化过程分为手动触发和自动触发
-    RDB 完成后会自动生成一个文件, 保存在 dir 配置的指定目录下, 文件名是 dbfilename 指定
-    REDIS 默认会采用 LZF 算法对生成的 RDB 文件做压缩处理, 压缩后的文件远远小于内存大小, 默认开启
-    手动触发:
-        手动触发的命令有 save 和 bgsave
-        save: 该命令会阻塞 Redis 服务器, 直到 RDB 的过程完成, 已经被废弃, 因此线上不建议使用
-        bgsave: 每次进行 RDB 过程都会 fork 一个子进程, 由子进程完成 RDB 操作, 因此阻塞只会发生在 fork 阶段, 一般时间很短
-    自动触发:
-        (1) 根据我们的 save m n 配置规则自动触发
-        (2) 如果从节点执行全量复制操作, 主节点自动执行 bgsave 生成 RDB 文件并发送给从节点
-        (3) 执行 debug reload 命令重新加载 Redis 时, 也会触发 save 操作
-        (4) 默认情况下执行 shutdown 命令时, 如果没有开启 AOF 持久化功能则自动执行 bgsave
-    优点:
-        RDB 是一个紧凑的压缩的二进制文件, 代表 Redis 在某个时间点上的数据快照. 非常适用与备份, 全量复制等场景. 比如每六个小时执行 bgsave 备份, 并把 RDB 文件拷贝到远程机器或者文件系统中, 用于灾难恢复
-        Redis 加载 RDB 恢复数据远远快于 AOF 的方式
-    缺点:
-        RDB 方式数据没办法做到 实时持久化/秒级持久化. 因为 bgsave 每次运行都要执行 fork 操作创建子进程, 属于重量级操作, 频繁执行成本太高
-        RDB 文件使用特定的二进制格式保存, Redis 版本演进过程中有多个格式 RDB 版本, 存在老版本 Redis 服务无法兼容新版本 RDB 格式问题
-AOF(append only file)
-    以独立日志的方式记录每次写命令, 重启时在重新执行 AOF 文件中的命令达到恢复数据的目的. AOF 的主要作用是解决了数据持久化的实时性, 目前已是 Redis 持久化的主流方式
-    如何开启AOF
-        开启 AOF 功能需要设置配置: appendonly yes, 默认不开启. AOF 文件名通过 appendfilename 配置设置, 默认文件名是 appendonly.aof. 保存路径同 RDB 持久化方式一致, 通过 dir 配置指定
-    优点:
-        使用 AOF 持久化会让 Redis 变的非常耐久: 你可以设置不同的 fsync 策略, 比如无 fsync, 每秒钟一次 fsync, 或者每次执行写入命令时 fsync. AOF 的默认策略为每秒钟 fsync 一次, 在这种配置下, Redis 仍然能够保持良好的性能, 并且就算发生故障停机, 也最多只会丢失一秒钟数据
-    缺点:
-        对于相同的数据集来说, AOF 文件的体积通常要大于 RDB 文件的体积. 根据所使用的 fsync 策略, AOF 的速度可能会慢与 RDB. 在一般情况下, 每秒 fsync 的性能依然非常高, 而关闭 fsync 可以让 AOF 的速度和 RDB 一样快, 即使在高负荷之下也是如此. 不过在处理巨大的写入载入时, RDB 可以提供更有保证的最大延迟时间
-        数据恢复速度相对于 RDB 比较慢
-AOF和RDB的区别
-    RDB 持久化是指在指定的时间间隔内将内存中的数据集快照写入磁盘, 实际操作过程是 fork 一个子进程, 先将数据集写入临时文件, 写入成功后, 在替换之前的文件, 用二进制压缩存储
-    AOF持久化以日志的形式记录服务器所处理的每一个写, 删除操作, 查询操作不会记录, 以文本的方式记录, 可以打开文件看到详细的操作记录
-性能和解决方案
-    通过上面的分析, 我们都知道 RDB 的快照, AOF 的重写都需要 fork, 这是一个重量级操作, 会对 Redis 造成阻塞. 因此为了不影响 Redis 主进程, 我们需要尽可能降低阻塞.
-    如何减少 fork 操作的阻塞
-        (1) 优先使用物理机或者高效支持 fork 操作的虚拟化技术
-        (2) 控制 Redis 实例最大可用内存, fork 耗时跟内存量成正比, 线上建议每个 Redis 实例内存控制在 10G 以内
-        (3) 合理配置 LINUX 内存分配策略, 避免物理内存不足导致 fork 失败
-        (4) 降低 fork 操作的频率, 如适度放宽 AOF 自动触发时机, 避免不必要的全量复制等</code></pre>
-<blockquote><p>参考博文<br>[1] <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/93515595">吐血整理60个Redis面试题,全网最全了</a><br>[2] <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/133680585">天天用Redis，持久化方案你知道哪些？</a></p>
+<h4 id="XSS攻击"><a href="#XSS攻击" class="headerlink" title="XSS攻击"></a>XSS攻击</h4><h5 id="什么是XSS攻击"><a href="#什么是XSS攻击" class="headerlink" title="什么是XSS攻击"></a>什么是XSS攻击</h5><pre><code>XSS 即(Cross Site Scripting) 中文名称为: 跨站脚本攻击
+    1) XSS的重点不在于跨站点, 而在于脚本的执行. 那么XSS的原理是:
+        恶意攻击者在 web 页面中会插入一些恶意的 script 代码. 当用户浏览该网页的时候, name嵌入到 web 页面中 script 代码会执行, 因此会达到恶意攻击的目的. 那么 XSS 攻击最主要有如下分类: 反射型, 存储型以及 DOM-based 型. 反射型和 DOM-based 型可以归类为非持久性 XSS 攻击. 存储型可以归类为持久性 XSS 攻击
+    2) cookie 安全策略
+        在服务器端设置 cookie 的时候设置 http-only, 这样就可以防止用户通过 JS 获取 cookie
+        设置:
+            http-only: 只允许 http 或 https 请求读取 cookie, JS 代码是无法读取 cookie 的. 发送请求时自动发送 cookie.
+            secure-only: 只允许 https 请求读取, 发送请求时自动发送 cookie
+            host-only: 只允许主机域名与 domain 设置完成一致的网站才能访问该 cookie
+    3) X-XSS-Protection 设置
+        目前该属性被所有的主流浏览器默认开启 XSS 保护. 该参数是设置在响应头中目的是用来防范 XSS 攻击的. 他有如下几种配置: 默认为 1.
+        0: 禁用 XSS 保护
+        1: 启用 XSS 保护
+        1; mode=block; 启用 XSS 保护, 并且在检查到 XSS 攻击时, 停止页面渲染
+    4) XSS 防御 HTML 编码
+        我们需要将不可信数据放入到 html 标签内的时候需要进行 html 编码
+        编码规则: 将 &amp;&lt;&gt;&quot;&#39;/ 转义为实体字符.
+    5) XSS 防御 HTML Attribute 编码
+        和 HTML 编码一样, html 中的属性也要进行编码, 比如 &lt;input name=&quot;name&quot; /&gt;, name 是 input 的属性, 因此在 html 解析时, 会对 name 属性进行编码, 因为假如 &#123;name&#125; 的值为: &quot; onclick=&quot;alert(&#39;属性XSS&#39;)&quot; &quot;这样的, input 就变成了: &lt;input name=&quot;&quot; onclick=&quot;alert(&#39;属性XSS&#39;)&quot; &quot;&quot; /&gt;. input 属性 name 被插入了 onclick 事件, 因此对于常规的 html 属性, 都需要对其进行 HTML 属性编码.
+        编码规则:
+            除了字母, 数字, 字符以外, 使用 &amp;#x;16进制格式来转义 ASCII 值小于 256 以外的所有字符
+    6) javascript 编码
+        在上面的 XSS 防御 HTML Attribute 编码中我们是可以防御 XSS 攻击, 但是他只能防御的是 HTML 的通用属性, 并不是全部属性, 在 html 中还存在很多支持协议解析的 html 属性, 比如 onclick, onerror, href, src 等这些, 类似这些属性我们是无法通过 HTML 编码来防范 XSS 攻击的. 因为浏览器会先解析 html 编码的字符, 将其转换为该属性的值, 但是该属性本身支持 JS 代码执行, 因此浏览器在 HTML 解码后, 对该属性的值进行 JS 解析, 因此会执行响应的代码.
+        JavaScript 编码将字符编码成 \x+16 进制的形式, 对字节编码成 Unicode
+    7) URL 编码
+        作用范围: 将不可信数据作为 URL 参数值时需要对参数进行 URL 编码
+        编码规则: 将参数值进行 encodeURLComponent 编码
+    8) CSS 编码
+        作用范围: 将不可信数据作为 CSS 时进行 CSS 编码
+        编码规则: 除了数字字母字符以外, 使用 \XXXXXX 格式来转义 ASCII 值小于 256 的所有字符.
+    9) 开启 CSP 网页安全政策防止 XSS 攻击
+        Content-Security-Policy 中文的意思是 网页安全策略</code></pre>
+<h4 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h4><pre><code>SQL 注入是通过客户端的输入把 SQL 命令注入到一个应用的数据库中, 从而执行恶意的 SQL 语句.
+SQL 被攻击的原因是: sql 语句伪造参数, 然后对参数进行拼接后形成 xss 攻击的 sql 语句. 最后导致数据库被攻击了
+防范方法:
+    1) 我们可以使用预编译语句(PreparedStatement), 这样的话即使我们使用 sql 语句伪造参数, 到了服务端的时候, 这个伪造 sql 语句的参数也只是简单的字符串, 并不能起到攻击的作用
+    2) 数据库中的密码不明文存储, 可以对密码进行 md5 加密, 为了加大破解成本, 可以采用加盐的方式</code></pre>
+<blockquote><p>参考博文<br>[1] <a target="_blank" rel="noopener" href="https://www.cnblogs.com/tugenhua0707/p/10909284.html">web安全之XSS攻击原理及防范</a></p>
 </blockquote>
+
             
                 <div>
 <ul class="post-copyright" id="copyright">
@@ -209,7 +201,7 @@ AOF和RDB的区别
   </li>
   <li class="post-copyright-link">
   <strong>文章连结:  </strong>
-  <a href="/2020/09/27/PHP练习题-REDIS篇/" target="_blank" title="PHP练习题-REDIS篇">https://zhuxv.github.io/2020/09/27/PHP练习题-REDIS篇/</a>
+  <a href="/2020/09/29/常见的几种WEB攻击/" target="_blank" title="常见的几种WEB攻击">https://zhuxv.github.io/2020/09/29/常见的几种WEB攻击/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明:   </strong>
@@ -266,7 +258,7 @@ AOF和RDB的区别
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhuxv.github.io/2020/09/27/PHP%E7%BB%83%E4%B9%A0%E9%A2%98-REDIS%E7%AF%87/&title=《PHP练习题-REDIS篇》 — 小朱的技术博客&pic=images/article/redis.jpg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhuxv.github.io/2020/09/29/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8DWEB%E6%94%BB%E5%87%BB/&title=《常见的几种WEB攻击》 — 小朱的技术博客&pic=images/article/web_security.jpg.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -276,22 +268,22 @@ AOF和RDB的区别
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhuxv.github.io/2020/09/27/PHP%E7%BB%83%E4%B9%A0%E9%A2%98-REDIS%E7%AF%87/&title=《PHP练习题-REDIS篇》 — 小朱的技术博客&source=REDIS篇REDIS 练习笔记" data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhuxv.github.io/2020/09/29/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8DWEB%E6%94%BB%E5%87%BB/&title=《常见的几种WEB攻击》 — 小朱的技术博客&source=搞Web开发离不开安全这个话题，确保网站或者网页应用的安全性，是每个开发人员都应该了解的事。" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhuxv.github.io/2020/09/27/PHP%E7%BB%83%E4%B9%A0%E9%A2%98-REDIS%E7%AF%87/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhuxv.github.io/2020/09/29/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8DWEB%E6%94%BB%E5%87%BB/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《PHP练习题-REDIS篇》 — 小朱的技术博客&url=https://zhuxv.github.io/2020/09/27/PHP%E7%BB%83%E4%B9%A0%E9%A2%98-REDIS%E7%AF%87/&via=https://zhuxv.github.io" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《常见的几种WEB攻击》 — 小朱的技术博客&url=https://zhuxv.github.io/2020/09/29/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8DWEB%E6%94%BB%E5%87%BB/&via=https://zhuxv.github.io" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhuxv.github.io/2020/09/27/PHP%E7%BB%83%E4%B9%A0%E9%A2%98-REDIS%E7%AF%87/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhuxv.github.io/2020/09/29/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8DWEB%E6%94%BB%E5%87%BB/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -301,7 +293,7 @@ AOF和RDB的区别
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://zhuxv.github.io/2020/09/27/PHP%E7%BB%83%E4%B9%A0%E9%A2%98-REDIS%E7%AF%87/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://zhuxv.github.io/2020/09/29/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8DWEB%E6%94%BB%E5%87%BB/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -313,9 +305,9 @@ AOF和RDB的区别
   <li class="article-footer-tags">
     <i class="fa fa-tags"></i>
       
-    <a href="/tags/练习题/" class="color4">练习题</a>
+    <a href="/tags/WEB/" class="color4">WEB</a>
       
-    <a href="/tags/REDIS/" class="color1">REDIS</a>
+    <a href="/tags/安全/" class="color3">安全</a>
       
   </li>
 
@@ -328,26 +320,16 @@ AOF和RDB的区别
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#REDIS%E7%AF%87"><span class="post-toc-text">REDIS篇</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#1-redis%E5%92%8Cmemcached%E7%9B%B8%E6%AF%94%E6%9C%89%E5%93%AA%E4%BA%9B%E4%BC%98%E5%8A%BF"><span class="post-toc-text">1.redis和memcached相比有哪些优势</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#2-redis%E6%98%AF%E5%8D%95%E7%BA%BF%E7%A8%8B"><span class="post-toc-text">2.redis是单线程</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#3-redis%E7%9A%84%E4%BA%94%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="post-toc-text">3.redis的五种数据类型</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#4-redis%E7%9A%84%E5%B9%B6%E5%8F%91%E7%AB%9E%E4%BA%89%E9%97%AE%E9%A2%98%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3"><span class="post-toc-text">4.redis的并发竞争问题如何解决</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#5-redis%E5%90%AF%E5%8A%A8%E5%91%BD%E4%BB%A4"><span class="post-toc-text">5.redis启动命令</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#6-redis-%E6%94%AF%E6%8C%81%E7%9A%84%E8%AF%AD%E8%A8%80"><span class="post-toc-text">6.redis 支持的语言</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#7-redis-%E6%8C%81%E4%B9%85%E5%8C%96%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="post-toc-text">7.redis 持久化解决方案</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#XSS%E6%94%BB%E5%87%BB"><span class="post-toc-text">XSS攻击</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFXSS%E6%94%BB%E5%87%BB"><span class="post-toc-text">什么是XSS攻击</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#SQL%E6%B3%A8%E5%85%A5"><span class="post-toc-text">SQL注入</span></a></li></ol>
         </nav>
     </aside>
     
 
 <nav id="article-nav">
   
-    <a href="/2020/09/29/MVC%E6%A8%A1%E5%BC%8F/" id="article-nav-newer" class="article-nav-link-wrap">
-
-      <span class="article-nav-title">
-        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
-        
-          MVC模式
-        
-      </span>
-    </a>
   
-  
-    <a href="/2020/09/25/PHP%E7%BB%83%E4%B9%A0%E9%A2%98-MySQL%E7%AF%87/" id="article-nav-older" class="article-nav-link-wrap">
-      <span class="article-nav-title">PHP练习题-MySQL篇</span>
+    <a href="/2020/09/29/RESTfulAPI%E7%9A%84%E7%90%86%E8%A7%A3%E5%8F%8A%E5%85%B6%E5%8E%9F%E7%90%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">RESTfulAPI的理解及其原理</span>
       <i class="fa fa-hand-o-right" aria-hidden="true"></i>
     </a>
   
