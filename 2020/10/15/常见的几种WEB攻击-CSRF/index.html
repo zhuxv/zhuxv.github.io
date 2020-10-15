@@ -3,22 +3,24 @@
 <head>
   <meta charset="utf-8">
   
-  <title>MVC模式 | 小朱的技术博客</title>
+  <title>常见的几种WEB攻击-CSRF | 小朱的技术博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="小朱的技术博客空间" />
   
-  <meta name="description" content="如何设计一个程序的结构, 这是一门专门的学问, 叫做架构模式, 属于编程的方法论.MVC 模式就是架构模式的一种">
+  <meta name="description" content="什么是CSRFCross Site Request Forgery 跨站域请求伪造 是一种网络攻击方式, 它在 2007 年曾被列为互联网 20 大安全隐患之一, 也被称为 One Click Attack 或者 Session Riding, 通常缩写为 CSRF 或 XSRF, 是一种对网站的恶意利用. 尽管听起来像跨站脚本 XSS, 但是他与 XSS 非常不同, 并且攻击方式几乎相左. XS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MVC模式">
-<meta property="og:url" content="https://zhuxv.github.io/2020/09/29/MVC%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:title" content="常见的几种WEB攻击-CSRF">
+<meta property="og:url" content="https://zhuxv.github.io/2020/10/15/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8DWEB%E6%94%BB%E5%87%BB-CSRF/index.html">
 <meta property="og:site_name" content="小朱的技术博客">
-<meta property="og:description" content="如何设计一个程序的结构, 这是一门专门的学问, 叫做架构模式, 属于编程的方法论.MVC 模式就是架构模式的一种">
+<meta property="og:description" content="什么是CSRFCross Site Request Forgery 跨站域请求伪造 是一种网络攻击方式, 它在 2007 年曾被列为互联网 20 大安全隐患之一, 也被称为 One Click Attack 或者 Session Riding, 通常缩写为 CSRF 或 XSRF, 是一种对网站的恶意利用. 尽管听起来像跨站脚本 XSS, 但是他与 XSS 非常不同, 并且攻击方式几乎相左. XS">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-09-29T08:22:44.000Z">
-<meta property="article:modified_time" content="2020-09-29T09:03:54.090Z">
+<meta property="article:published_time" content="2020-10-15T05:56:20.000Z">
+<meta property="article:modified_time" content="2020-10-15T06:38:12.772Z">
 <meta property="article:author" content="Zhu Xv">
-<meta property="article:tag" content="MVC">
+<meta property="article:tag" content="WEB">
+<meta property="article:tag" content="安全">
+<meta property="article:tag" content="CSRF">
 <meta name="twitter:card" content="summary">
   
   
@@ -114,14 +116,14 @@
     </div>
 </header>
       <div class="outer">
-        <section id="main" class="body-wrap"><article id="post-MVC模式" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main" class="body-wrap"><article id="post-常见的几种WEB攻击-CSRF" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="post-title" itemprop="name">
-      MVC模式
+      常见的几种WEB攻击-CSRF
     </h1>
     <div class="post-title-bar">
       <ul>
@@ -129,12 +131,12 @@
               <li>
                   <i class="fa fa-book"></i>
                   
-                      <a href="/categories/MVC/">MVC</a>
+                      <a href="/categories/WEB安全/">WEB安全</a>
                   
               </li>
           
         <li>
-          <i class="fa fa-calendar"></i>  2020-09-29
+          <i class="fa fa-calendar"></i>  2020-10-15
         </li>
         <li>
           <i class="fa fa-eye"></i>
@@ -150,10 +152,22 @@
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <p>如何设计一个程序的结构, 这是一门专门的学问, 叫做<code>架构模式</code>, 属于编程的方法论.<br>MVC 模式就是架构模式的一种</p>
-<a id="more"></a>
-<p>MVC是三个单词的首字母缩写, 他们是 Model(模型), View(视图)和Controller(控制器)<br>这个模式认为, 程序不论简单或复杂, 从结构上看, 都可以分为三层:<br>    1) 最上面的一层, 是直接面向最终用户的<code>视图层</code>(View). 他是提供给用户的操作界面, 是程序的外壳<br>    2) 最底下的一层, 是核心的<code>数据层</code>(Model). 也就是程序需要操作的数据或信息<br>    3) 中间的一层, 就是<code>控制层</code>(Controller), 他是根据用户从<code>视图层</code>输入的指令, 选取<code>数据层</code>中的数据, 然后对其进行相应的操作, 产生最终的结果<br>这三层是紧密联系在一起的, 但又是相互独立的, 每一层内部的变化不影响其它层. 每一层都对外提供接口(Interface), 供上面一层调用. 这样一来, 软件就可以实现模块化, 修改外观或者变更数据都不用修改其它层, 大大方便了维护和升级</p>
-<blockquote><p>参考博文<br>[1] <a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2007/11/mvc.html">谈谈MVC模式</a></p>
+            <h5 id="什么是CSRF"><a href="#什么是CSRF" class="headerlink" title="什么是CSRF"></a>什么是CSRF</h5><p><code>Cross Site Request Forgery</code> <code>跨站域请求伪造</code> 是一种网络攻击方式, 它在 2007 年曾被列为互联网 20 大安全隐患之一, 也被称为 <code>One Click Attack</code> 或者 <code>Session Riding</code>, 通常缩写为 <code>CSRF</code> 或 <code>XSRF</code>, 是一种对网站的恶意利用. 尽管听起来像跨站脚本 <code>XSS</code>, 但是他与 <code>XSS</code> 非常不同, 并且攻击方式几乎相左. <code>XSS</code> 利用站点内的信任用户, 而 <code>CSRF</code> 则通过 <code>伪装来自受信任用户</code> 的请求来利用受信任网站. 与 <code>XSS</code> 相比, <code>CSRF</code> 攻击往往不太流行(因此对其进行防范的资源也相当稀少)和难以防范, 所以被认为比 <code>XSS</code> 更具有危险性.</p>
+<h5 id="CSRF可以做什么"><a href="#CSRF可以做什么" class="headerlink" title="CSRF可以做什么"></a>CSRF可以做什么</h5><p>你可以这么理解 <code>CSRF</code> 攻击, 攻击者盗用了你的身份, 以你的名义发送恶意请求. <code>CSRF</code> 能够做的事情包括: 以你的名义发送邮件,发送消息,盗取你的账号,甚至购买商品,虚拟货币转账…… 造成的问题包括: 个人隐私泄露以及财产安全</p>
+<h5 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h5><ul>
+<li>登录受信任网站A, 并在本地生成 <code>Cookie</code></li>
+<li>在不登出A的情况下, 访问危险网站B.<br>看到这里, 你也许会说: “如果我不满足以上两个条件中的一个,我就不会受到 CSRF 的攻击”. 是的, 确实如此, 但你不能保证以下情况不会发生:<blockquote>
+<ol>
+<li>你不能保证你登陆了一个网站后, 不在打开一个 <code>tab</code> 页面并访问另外的网站.</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<ol start="2">
+<li>你不能保证你关闭浏览器后, 你本地 <code>Cookie</code> 会立刻过期, 你上次的会话已经结束. (事实上, 关闭浏览器不能结束一个会话)</li>
+<li>所谓的攻击网站, 也可能是一个存在其他漏洞的可信任的经常被人访问的网站</li>
+</ol>
+<blockquote><p>参考博文<br>[1] <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/7f33f9c7997b">浅谈CSRF</a></p>
 </blockquote>
             
                 <div>
@@ -163,7 +177,7 @@
   </li>
   <li class="post-copyright-link">
   <strong>文章连结:  </strong>
-  <a href="/2020/09/29/MVC模式/" target="_blank" title="MVC模式">https://zhuxv.github.io/2020/09/29/MVC模式/</a>
+  <a href="/2020/10/15/常见的几种WEB攻击-CSRF/" target="_blank" title="常见的几种WEB攻击-CSRF">https://zhuxv.github.io/2020/10/15/常见的几种WEB攻击-CSRF/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明:   </strong>
@@ -220,7 +234,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhuxv.github.io/2020/09/29/MVC%E6%A8%A1%E5%BC%8F/&title=《MVC模式》 — 小朱的技术博客&pic=images/article/mvc.jpg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhuxv.github.io/2020/10/15/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8DWEB%E6%94%BB%E5%87%BB-CSRF/&title=《常见的几种WEB攻击-CSRF》 — 小朱的技术博客&pic=images/article/csrf.jpeg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -230,22 +244,22 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhuxv.github.io/2020/09/29/MVC%E6%A8%A1%E5%BC%8F/&title=《MVC模式》 — 小朱的技术博客&source=如何设计一个程序的结构, 这是一门专门的学问, 叫做架构模式, 属于编程的方法论.MVC 模式就是架构模式的一种" data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhuxv.github.io/2020/10/15/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8DWEB%E6%94%BB%E5%87%BB-CSRF/&title=《常见的几种WEB攻击-CSRF》 — 小朱的技术博客&source=" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhuxv.github.io/2020/09/29/MVC%E6%A8%A1%E5%BC%8F/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhuxv.github.io/2020/10/15/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8DWEB%E6%94%BB%E5%87%BB-CSRF/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《MVC模式》 — 小朱的技术博客&url=https://zhuxv.github.io/2020/09/29/MVC%E6%A8%A1%E5%BC%8F/&via=https://zhuxv.github.io" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《常见的几种WEB攻击-CSRF》 — 小朱的技术博客&url=https://zhuxv.github.io/2020/10/15/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8DWEB%E6%94%BB%E5%87%BB-CSRF/&via=https://zhuxv.github.io" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhuxv.github.io/2020/09/29/MVC%E6%A8%A1%E5%BC%8F/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhuxv.github.io/2020/10/15/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8DWEB%E6%94%BB%E5%87%BB-CSRF/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -255,7 +269,7 @@
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://zhuxv.github.io/2020/09/29/MVC%E6%A8%A1%E5%BC%8F/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://zhuxv.github.io/2020/10/15/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8DWEB%E6%94%BB%E5%87%BB-CSRF/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -267,7 +281,11 @@
   <li class="article-footer-tags">
     <i class="fa fa-tags"></i>
       
-    <a href="/tags/MVC/" class="color4">MVC</a>
+    <a href="/tags/WEB/" class="color4">WEB</a>
+      
+    <a href="/tags/安全/" class="color3">安全</a>
+      
+    <a href="/tags/CSRF/" class="color5">CSRF</a>
       
   </li>
 
@@ -278,22 +296,18 @@
 </article>
 
 
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFCSRF"><span class="post-toc-text">什么是CSRF</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#CSRF%E5%8F%AF%E4%BB%A5%E5%81%9A%E4%BB%80%E4%B9%88"><span class="post-toc-text">CSRF可以做什么</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#%E5%8E%9F%E7%90%86"><span class="post-toc-text">原理</span></a></li></ol>
+        </nav>
+    </aside>
+    
 
 <nav id="article-nav">
   
-    <a href="/2020/09/29/RESTfulAPI%E7%9A%84%E7%90%86%E8%A7%A3%E5%8F%8A%E5%85%B6%E5%8E%9F%E7%90%86/" id="article-nav-newer" class="article-nav-link-wrap">
-
-      <span class="article-nav-title">
-        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
-        
-          RESTfulAPI的理解及其原理
-        
-      </span>
-    </a>
   
-  
-    <a href="/2020/09/27/PHP%E7%BB%83%E4%B9%A0%E9%A2%98-REDIS%E7%AF%87/" id="article-nav-older" class="article-nav-link-wrap">
-      <span class="article-nav-title">PHP练习题-REDIS篇</span>
+    <a href="/2020/10/15/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8DWEB%E6%94%BB%E5%87%BB-DDOS/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">常见的几种WEB攻击-DDOS</span>
       <i class="fa fa-hand-o-right" aria-hidden="true"></i>
     </a>
   
