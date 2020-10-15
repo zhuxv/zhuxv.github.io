@@ -3,23 +3,24 @@
 <head>
   <meta charset="utf-8">
   
-  <title>常见的几种WEB攻击 | 小朱的技术博客</title>
+  <title>常见的几种WEB攻击-SQL注入 | 小朱的技术博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="小朱的技术博客空间" />
   
-  <meta name="description" content="搞Web开发离不开安全这个话题，确保网站或者网页应用的安全性，是每个开发人员都应该了解的事。">
+  <meta name="description" content="SQL注入什么是SQL注入SQL 注入是通过客户端的输入把 SQL 命令注入到一个应用的数据库中, 从而执行恶意的 SQL 语句.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="常见的几种WEB攻击">
-<meta property="og:url" content="https://zhuxv.github.io/2020/09/29/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8DWEB%E6%94%BB%E5%87%BB/index.html">
+<meta property="og:title" content="常见的几种WEB攻击-SQL注入">
+<meta property="og:url" content="https://zhuxv.github.io/2020/09/29/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8DWEB%E6%94%BB%E5%87%BB-SQL%E6%B3%A8%E5%85%A5/index.html">
 <meta property="og:site_name" content="小朱的技术博客">
-<meta property="og:description" content="搞Web开发离不开安全这个话题，确保网站或者网页应用的安全性，是每个开发人员都应该了解的事。">
+<meta property="og:description" content="SQL注入什么是SQL注入SQL 注入是通过客户端的输入把 SQL 命令注入到一个应用的数据库中, 从而执行恶意的 SQL 语句.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-09-29T09:43:26.000Z">
-<meta property="article:modified_time" content="2020-09-30T08:53:45.482Z">
+<meta property="article:modified_time" content="2020-10-15T02:54:38.606Z">
 <meta property="article:author" content="Zhu Xv">
 <meta property="article:tag" content="WEB">
 <meta property="article:tag" content="安全">
+<meta property="article:tag" content="SQL注入">
 <meta name="twitter:card" content="summary">
   
   
@@ -115,14 +116,14 @@
     </div>
 </header>
       <div class="outer">
-        <section id="main" class="body-wrap"><article id="post-常见的几种WEB攻击" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main" class="body-wrap"><article id="post-常见的几种WEB攻击-SQL注入" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="post-title" itemprop="name">
-      常见的几种WEB攻击
+      常见的几种WEB攻击-SQL注入
     </h1>
     <div class="post-title-bar">
       <ul>
@@ -130,7 +131,7 @@
               <li>
                   <i class="fa fa-book"></i>
                   
-                      <a href="/categories/WEB/">WEB</a>
+                      <a href="/categories/WEB安全/">WEB安全</a>
                   
               </li>
           
@@ -151,48 +152,40 @@
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <p>搞Web开发离不开安全这个话题，确保网站或者网页应用的安全性，是每个开发人员都应该了解的事。</p>
+            <h5 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h5><h6 id="什么是SQL注入"><a href="#什么是SQL注入" class="headerlink" title="什么是SQL注入"></a>什么是SQL注入</h6><p>SQL 注入是通过客户端的输入把 SQL 命令注入到一个应用的数据库中, 从而执行恶意的 SQL 语句.</p>
 <a id="more"></a>
-<h4 id="XSS攻击"><a href="#XSS攻击" class="headerlink" title="XSS攻击"></a>XSS攻击</h4><h5 id="什么是XSS攻击"><a href="#什么是XSS攻击" class="headerlink" title="什么是XSS攻击"></a>什么是XSS攻击</h5><pre><code>XSS 即(Cross Site Scripting) 中文名称为: 跨站脚本攻击
-    1) XSS的重点不在于跨站点, 而在于脚本的执行. 那么XSS的原理是:
-        恶意攻击者在 web 页面中会插入一些恶意的 script 代码. 当用户浏览该网页的时候, name嵌入到 web 页面中 script 代码会执行, 因此会达到恶意攻击的目的. 那么 XSS 攻击最主要有如下分类: 反射型, 存储型以及 DOM-based 型. 反射型和 DOM-based 型可以归类为非持久性 XSS 攻击. 存储型可以归类为持久性 XSS 攻击
-    2) cookie 安全策略
-        在服务器端设置 cookie 的时候设置 http-only, 这样就可以防止用户通过 JS 获取 cookie
-        设置:
-            http-only: 只允许 http 或 https 请求读取 cookie, JS 代码是无法读取 cookie 的. 发送请求时自动发送 cookie.
-            secure-only: 只允许 https 请求读取, 发送请求时自动发送 cookie
-            host-only: 只允许主机域名与 domain 设置完成一致的网站才能访问该 cookie
-    3) X-XSS-Protection 设置
-        目前该属性被所有的主流浏览器默认开启 XSS 保护. 该参数是设置在响应头中目的是用来防范 XSS 攻击的. 他有如下几种配置: 默认为 1.
-        0: 禁用 XSS 保护
-        1: 启用 XSS 保护
-        1; mode=block; 启用 XSS 保护, 并且在检查到 XSS 攻击时, 停止页面渲染
-    4) XSS 防御 HTML 编码
-        我们需要将不可信数据放入到 html 标签内的时候需要进行 html 编码
-        编码规则: 将 &amp;&lt;&gt;&quot;&#39;/ 转义为实体字符.
-    5) XSS 防御 HTML Attribute 编码
-        和 HTML 编码一样, html 中的属性也要进行编码, 比如 &lt;input name=&quot;name&quot; /&gt;, name 是 input 的属性, 因此在 html 解析时, 会对 name 属性进行编码, 因为假如 &#123;name&#125; 的值为: &quot; onclick=&quot;alert(&#39;属性XSS&#39;)&quot; &quot;这样的, input 就变成了: &lt;input name=&quot;&quot; onclick=&quot;alert(&#39;属性XSS&#39;)&quot; &quot;&quot; /&gt;. input 属性 name 被插入了 onclick 事件, 因此对于常规的 html 属性, 都需要对其进行 HTML 属性编码.
-        编码规则:
-            除了字母, 数字, 字符以外, 使用 &amp;#x;16进制格式来转义 ASCII 值小于 256 以外的所有字符
-    6) javascript 编码
-        在上面的 XSS 防御 HTML Attribute 编码中我们是可以防御 XSS 攻击, 但是他只能防御的是 HTML 的通用属性, 并不是全部属性, 在 html 中还存在很多支持协议解析的 html 属性, 比如 onclick, onerror, href, src 等这些, 类似这些属性我们是无法通过 HTML 编码来防范 XSS 攻击的. 因为浏览器会先解析 html 编码的字符, 将其转换为该属性的值, 但是该属性本身支持 JS 代码执行, 因此浏览器在 HTML 解码后, 对该属性的值进行 JS 解析, 因此会执行响应的代码.
-        JavaScript 编码将字符编码成 \x+16 进制的形式, 对字节编码成 Unicode
-    7) URL 编码
-        作用范围: 将不可信数据作为 URL 参数值时需要对参数进行 URL 编码
-        编码规则: 将参数值进行 encodeURLComponent 编码
-    8) CSS 编码
-        作用范围: 将不可信数据作为 CSS 时进行 CSS 编码
-        编码规则: 除了数字字母字符以外, 使用 \XXXXXX 格式来转义 ASCII 值小于 256 的所有字符.
-    9) 开启 CSP 网页安全政策防止 XSS 攻击
-        Content-Security-Policy 中文的意思是 网页安全策略</code></pre>
-<h4 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h4><pre><code>SQL 注入是通过客户端的输入把 SQL 命令注入到一个应用的数据库中, 从而执行恶意的 SQL 语句.
-SQL 被攻击的原因是: sql 语句伪造参数, 然后对参数进行拼接后形成 xss 攻击的 sql 语句. 最后导致数据库被攻击了
-防范方法:
-    1) 我们可以使用预编译语句(PreparedStatement), 这样的话即使我们使用 sql 语句伪造参数, 到了服务端的时候, 这个伪造 sql 语句的参数也只是简单的字符串, 并不能起到攻击的作用
-    2) 数据库中的密码不明文存储, 可以对密码进行 md5 加密, 为了加大破解成本, 可以采用加盐的方式</code></pre>
-<blockquote><p>参考博文<br>[1] <a target="_blank" rel="noopener" href="https://www.cnblogs.com/tugenhua0707/p/10909284.html">web安全之XSS攻击原理及防范</a></p>
+<p>SQL 被攻击的原因是:</p>
+<blockquote><p>sql 语句伪造参数, 然后对参数进行拼接后形成 xss 攻击的 sql 语句. 最后导致数据库被攻击了</p>
 </blockquote>
-
+<p>注意:</p>
+<blockquote><p>但凡有 SQL 注入漏洞的程序, 都是因为程序要接受来自客户端用户输入的变量或 URL 传递的参数, 并且这个变量或参数是组成 SQL 语句的一部分, 对于用户输入的内容或传递的参数, 我们应该要时刻保持警惕, 这里安全领域里的 <code>[外部数据不可信任]</code> 的原则, 纵观 WEB 安全领域的各种攻击方式, 大多数都是因为开发者违反了这个原则而导致的, 所以自然能想到的, 就是从变量的检测, 过滤, 验证下手, 确保变量是开发者所预想的</p>
+</blockquote>
+<p>防范方法:</p>
+<blockquote><p>我们可以使用预编译语句(PreparedStatement), 这样的话即使我们使用 sql 语句伪造参数, 到了服务端的时候, 这个伪造 sql 语句的参数也只是简单的字符串, 并不能起到攻击的作用<br>数据库中的密码不明文存储, 可以对密码进行 md5 加密, 为了加大破解成本, 可以采用加盐的方式<br>只要有固定格式的变量, 在 SQL 语句执行前, 应该严格按照固定格式去检查, 确保变量是我们预想的格式, 这样可以很大程度上避免 SQL 注入</p>
+</blockquote>
+<h6 id="什么是预编译"><a href="#什么是预编译" class="headerlink" title="什么是预编译"></a>什么是预编译</h6><p>通常我们的一条 <code>SQL</code> 在 db 接收到最终执行完毕返回可以分为下面三个过程</p>
+<blockquote><ol>
+<li>词法和语义解析</li>
+<li>优化 <code>sql</code> 语句, 制定执行计划</li>
+<li>执行并返回结果</li>
+</ol>
+</blockquote>
+<p>我们把 这种普通语句称作 <code>Immediate Statements</code>.<br>但是很多情况下, 我们的一条 <code>sql</code> 语句可能会反复执行, 或者每次执行的时候只有个别的值不同.<br>如果每次都需要经过上面的词法语义解析, 语句优化, 指定执行计划, 则效率明显就不行了.<br>所谓预编译语句就是将这类语句中的值用占位符代替, 可以视为将 <code>sql</code> 语句模板化或者参数化, 一般称这类语句叫 <code>Prepared Statements</code> 或者 <code>Parameterized Statements</code><br>预编译语句优势在于: </p>
+<blockquote>
+<p>一次编译, 多次运行, 省去了解析优化等过程; 此外预编译能够防止 <code>sql</code> 注入</p>
+</blockquote>
+<h6 id="防止SQL注入"><a href="#防止SQL注入" class="headerlink" title="防止SQL注入"></a>防止SQL注入</h6><blockquote>
+<ol>
+<li>永远不要信任用户的输入, 对用户的输入进行校验, 可以通过正则表达式, 或限制长度; 对单双引号进行转换</li>
+<li>永远不要使用动态拼接 <code>SQL</code>, 可以使用参数化的 <code>SQL</code> 或者直接使用存储过程进行数据查询存取</li>
+<li>永远不要使用管理员权限的数据库连接, 为每个应用使用单独的权限有限的数据库连接</li>
+<li>不要把机密信息直接存放, 加密或者 <code>hash</code> 掉密码和敏感信息</li>
+<li>应用的异常信息应该给出尽可能少的提示, 最好使用自定义的错误信息对原始错误信息进行包装</li>
+<li><code>PHP</code> 在<code>MySQL</code> 扩展提供了 <code>mysqli_real_escape_string()</code> 函数来转义特殊的输入字符, <code>addcslashes()</code> 函数在指定字符前增加反斜杠</li>
+</ol>
+</blockquote>
+<blockquote><p>参考博文<br>[1] <a target="_blank" rel="noopener" href="https://www.runoob.com/mysql/mysql-sql-injection.html">MySQL及SQL注入</a></p>
+</blockquote>
             
                 <div>
 <ul class="post-copyright" id="copyright">
@@ -201,7 +194,7 @@ SQL 被攻击的原因是: sql 语句伪造参数, 然后对参数进行拼接�
   </li>
   <li class="post-copyright-link">
   <strong>文章连结:  </strong>
-  <a href="/2020/09/29/常见的几种WEB攻击/" target="_blank" title="常见的几种WEB攻击">https://zhuxv.github.io/2020/09/29/常见的几种WEB攻击/</a>
+  <a href="/2020/09/29/常见的几种WEB攻击-SQL注入/" target="_blank" title="常见的几种WEB攻击-SQL注入">https://zhuxv.github.io/2020/09/29/常见的几种WEB攻击-SQL注入/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明:   </strong>
@@ -258,7 +251,7 @@ SQL 被攻击的原因是: sql 语句伪造参数, 然后对参数进行拼接�
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhuxv.github.io/2020/09/29/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8DWEB%E6%94%BB%E5%87%BB/&title=《常见的几种WEB攻击》 — 小朱的技术博客&pic=images/article/web_security.jpg.jpg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhuxv.github.io/2020/09/29/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8DWEB%E6%94%BB%E5%87%BB-SQL%E6%B3%A8%E5%85%A5/&title=《常见的几种WEB攻击-SQL注入》 — 小朱的技术博客&pic=images/article/sql_injection.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -268,22 +261,22 @@ SQL 被攻击的原因是: sql 语句伪造参数, 然后对参数进行拼接�
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhuxv.github.io/2020/09/29/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8DWEB%E6%94%BB%E5%87%BB/&title=《常见的几种WEB攻击》 — 小朱的技术博客&source=搞Web开发离不开安全这个话题，确保网站或者网页应用的安全性，是每个开发人员都应该了解的事。" data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhuxv.github.io/2020/09/29/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8DWEB%E6%94%BB%E5%87%BB-SQL%E6%B3%A8%E5%85%A5/&title=《常见的几种WEB攻击-SQL注入》 — 小朱的技术博客&source=SQL注入什么是SQL注入SQL 注入是通过客户端的输入把 SQL 命令注入到一个应用的数据库中, 从而执行恶意的 SQL 语句." data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhuxv.github.io/2020/09/29/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8DWEB%E6%94%BB%E5%87%BB/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhuxv.github.io/2020/09/29/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8DWEB%E6%94%BB%E5%87%BB-SQL%E6%B3%A8%E5%85%A5/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《常见的几种WEB攻击》 — 小朱的技术博客&url=https://zhuxv.github.io/2020/09/29/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8DWEB%E6%94%BB%E5%87%BB/&via=https://zhuxv.github.io" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《常见的几种WEB攻击-SQL注入》 — 小朱的技术博客&url=https://zhuxv.github.io/2020/09/29/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8DWEB%E6%94%BB%E5%87%BB-SQL%E6%B3%A8%E5%85%A5/&via=https://zhuxv.github.io" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhuxv.github.io/2020/09/29/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8DWEB%E6%94%BB%E5%87%BB/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhuxv.github.io/2020/09/29/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8DWEB%E6%94%BB%E5%87%BB-SQL%E6%B3%A8%E5%85%A5/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -293,7 +286,7 @@ SQL 被攻击的原因是: sql 语句伪造参数, 然后对参数进行拼接�
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://zhuxv.github.io/2020/09/29/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8DWEB%E6%94%BB%E5%87%BB/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://zhuxv.github.io/2020/09/29/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8DWEB%E6%94%BB%E5%87%BB-SQL%E6%B3%A8%E5%85%A5/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -309,6 +302,8 @@ SQL 被攻击的原因是: sql 语句伪造参数, 然后对参数进行拼接�
       
     <a href="/tags/安全/" class="color3">安全</a>
       
+    <a href="/tags/SQL注入/" class="color1">SQL注入</a>
+      
   </li>
 
         </ul>
@@ -320,12 +315,22 @@ SQL 被攻击的原因是: sql 语句伪造参数, 然后对参数进行拼接�
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#XSS%E6%94%BB%E5%87%BB"><span class="post-toc-text">XSS攻击</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFXSS%E6%94%BB%E5%87%BB"><span class="post-toc-text">什么是XSS攻击</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#SQL%E6%B3%A8%E5%85%A5"><span class="post-toc-text">SQL注入</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#SQL%E6%B3%A8%E5%85%A5"><span class="post-toc-text">SQL注入</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFSQL%E6%B3%A8%E5%85%A5"><span class="post-toc-text">什么是SQL注入</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%A2%84%E7%BC%96%E8%AF%91"><span class="post-toc-text">什么是预编译</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#%E9%98%B2%E6%AD%A2SQL%E6%B3%A8%E5%85%A5"><span class="post-toc-text">防止SQL注入</span></a></li></ol></li></ol>
         </nav>
     </aside>
     
 
 <nav id="article-nav">
+  
+    <a href="/2020/09/29/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8DWEB%E6%94%BB%E5%87%BB-XSS/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          常见的几种WEB攻击-XSS
+        
+      </span>
+    </a>
   
   
     <a href="/2020/09/29/RESTfulAPI%E7%9A%84%E7%90%86%E8%A7%A3%E5%8F%8A%E5%85%B6%E5%8E%9F%E7%90%86/" id="article-nav-older" class="article-nav-link-wrap">
@@ -382,10 +387,10 @@ SQL 被攻击的原因是: sql 语句伪造参数, 然后对参数进行拼接�
 <div class="sidebar-menu-box" id="sidebar-menu-box">
     <div class="sidebar-menu-box-container">
         <div id="sidebar-menu-box-categories">
-            <a class="category-link" href="/categories/MVC/">MVC</a><a class="category-link" href="/categories/MySQL/">MySQL</a><a class="category-link" href="/categories/PHP/">PHP</a><a class="category-link" href="/categories/REDIS/">REDIS</a><a class="category-link" href="/categories/WEB/">WEB</a><a class="category-link" href="/categories/%E6%9C%8D%E5%8A%A1/">服务</a><a class="category-link" href="/categories/%E6%9E%B6%E6%9E%84/">架构</a>
+            <a class="category-link" href="/categories/MVC/">MVC</a><a class="category-link" href="/categories/MySQL/">MySQL</a><a class="category-link" href="/categories/PHP/">PHP</a><a class="category-link" href="/categories/REDIS/">REDIS</a><a class="category-link" href="/categories/WEB%E5%AE%89%E5%85%A8/">WEB安全</a><a class="category-link" href="/categories/%E6%9C%8D%E5%8A%A1/">服务</a><a class="category-link" href="/categories/%E6%9E%B6%E6%9E%84/">架构</a>
         </div>
         <div id="sidebar-menu-box-tags">
-            <a href="/tags/MVC/" style="font-size: 10px;">MVC</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/REDIS/" style="font-size: 10px;">REDIS</a> <a href="/tags/RESTful/" style="font-size: 10px;">RESTful</a> <a href="/tags/WEB/" style="font-size: 10px;">WEB</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 10px;">字符串</a> <a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 10px;">安全</a> <a href="/tags/%E6%95%B0%E7%BB%84/" style="font-size: 10px;">数组</a> <a href="/tags/%E6%9C%8D%E5%8A%A1/" style="font-size: 10px;">服务</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 10px;">架构</a> <a href="/tags/%E7%BB%83%E4%B9%A0%E9%A2%98/" style="font-size: 20px;">练习题</a>
+            <a href="/tags/DDOS/" style="font-size: 10px;">DDOS</a> <a href="/tags/MVC/" style="font-size: 10px;">MVC</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/REDIS/" style="font-size: 10px;">REDIS</a> <a href="/tags/RESTful/" style="font-size: 10px;">RESTful</a> <a href="/tags/SQL%E6%B3%A8%E5%85%A5/" style="font-size: 10px;">SQL注入</a> <a href="/tags/WEB/" style="font-size: 15px;">WEB</a> <a href="/tags/XSS/" style="font-size: 10px;">XSS</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 10px;">字符串</a> <a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 15px;">安全</a> <a href="/tags/%E6%95%B0%E7%BB%84/" style="font-size: 10px;">数组</a> <a href="/tags/%E6%9C%8D%E5%8A%A1/" style="font-size: 10px;">服务</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 10px;">架构</a> <a href="/tags/%E7%BB%83%E4%B9%A0%E9%A2%98/" style="font-size: 20px;">练习题</a>
         </div>
     </div>
     <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
@@ -418,7 +423,7 @@ SQL 被攻击的原因是: sql 语句伪造参数, 然后对参数进行拼接�
     <div class="mobile-header-tag-container">
         <span class="title">Tags</span>
         <div id="mobile-header-container-tags">
-            <a href="/tags/MVC/" style="font-size: 10px;">MVC</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/REDIS/" style="font-size: 10px;">REDIS</a> <a href="/tags/RESTful/" style="font-size: 10px;">RESTful</a> <a href="/tags/WEB/" style="font-size: 10px;">WEB</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 10px;">字符串</a> <a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 10px;">安全</a> <a href="/tags/%E6%95%B0%E7%BB%84/" style="font-size: 10px;">数组</a> <a href="/tags/%E6%9C%8D%E5%8A%A1/" style="font-size: 10px;">服务</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 10px;">架构</a> <a href="/tags/%E7%BB%83%E4%B9%A0%E9%A2%98/" style="font-size: 20px;">练习题</a>
+            <a href="/tags/DDOS/" style="font-size: 10px;">DDOS</a> <a href="/tags/MVC/" style="font-size: 10px;">MVC</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/REDIS/" style="font-size: 10px;">REDIS</a> <a href="/tags/RESTful/" style="font-size: 10px;">RESTful</a> <a href="/tags/SQL%E6%B3%A8%E5%85%A5/" style="font-size: 10px;">SQL注入</a> <a href="/tags/WEB/" style="font-size: 15px;">WEB</a> <a href="/tags/XSS/" style="font-size: 10px;">XSS</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 10px;">字符串</a> <a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 15px;">安全</a> <a href="/tags/%E6%95%B0%E7%BB%84/" style="font-size: 10px;">数组</a> <a href="/tags/%E6%9C%8D%E5%8A%A1/" style="font-size: 10px;">服务</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 10px;">架构</a> <a href="/tags/%E7%BB%83%E4%B9%A0%E9%A2%98/" style="font-size: 20px;">练习题</a>
         </div>
     </div>
 </div>

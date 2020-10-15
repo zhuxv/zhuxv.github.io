@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>常见的几种WEB攻击-DDOS | 小朱的技术博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="小朱的技术博客空间" />
+  
+  <meta name="description" content="DDOS什么是DDOS全称 Distributed Denial of Service, 中文意思为 “分布式拒绝服务”, 就是利用大量合法的分布式服务器对目标发送请求, 从而导致正常合法用户无法获得服务. 通俗点讲就是利用网络节点资源如: IDC服务器, 个人PC, 手机, 智能设备, 打印机, 摄像头等对目标发起大量攻击请求, 从而导致服务器拥塞而无法对外提供正常服务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常见的几种WEB攻击-DDOS">
+<meta property="og:url" content="https://zhuxv.github.io/2020/10/15/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8DWEB%E6%94%BB%E5%87%BB-DDOS/index.html">
+<meta property="og:site_name" content="小朱的技术博客">
+<meta property="og:description" content="DDOS什么是DDOS全称 Distributed Denial of Service, 中文意思为 “分布式拒绝服务”, 就是利用大量合法的分布式服务器对目标发送请求, 从而导致正常合法用户无法获得服务. 通俗点讲就是利用网络节点资源如: IDC服务器, 个人PC, 手机, 智能设备, 打印机, 摄像头等对目标发起大量攻击请求, 从而导致服务器拥塞而无法对外提供正常服务">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zhuxv.github.io/images/article/ddos.jpg">
+<meta property="article:published_time" content="2020-10-15T01:54:47.000Z">
+<meta property="article:modified_time" content="2020-10-15T03:58:14.534Z">
+<meta property="article:author" content="Zhu Xv">
+<meta property="article:tag" content="WEB">
+<meta property="article:tag" content="安全">
+<meta property="article:tag" content="DDOS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhuxv.github.io/images/article/ddos.jpg">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+
+  
+  
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">小朱的空间</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>首页</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>归档</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>关于</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/zhuxv.gif" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        小朱的空间
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        林深时见鹿,海蓝时见鲸,梦醒时见你
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Index" target="_blank" href="//zhuxv.github.io">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/zhuxv">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/zhuxv">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Twitter" target="_blank" ">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-常见的几种WEB攻击-DDOS" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      常见的几种WEB攻击-DDOS
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/WEB安全/">WEB安全</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2020-10-15
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h4 id="DDOS"><a href="#DDOS" class="headerlink" title="DDOS"></a>DDOS</h4><h5 id="什么是DDOS"><a href="#什么是DDOS" class="headerlink" title="什么是DDOS"></a>什么是DDOS</h5><p>全称 <code>Distributed Denial of Service</code>, 中文意思为 “分布式拒绝服务”, 就是利用大量合法的分布式服务器对目标发送请求, 从而导致正常合法用户无法获得服务. 通俗点讲就是利用网络节点资源如: IDC服务器, 个人PC, 手机, 智能设备, 打印机, 摄像头等对目标发起大量攻击请求, 从而导致服务器拥塞而无法对外提供正常服务</p>
+<a id="more"></a>
+<img src="/images/article/ddos.jpg" class="imgs">
+<h5 id="黑客为什么选择DDOS"><a href="#黑客为什么选择DDOS" class="headerlink" title="黑客为什么选择DDOS"></a>黑客为什么选择DDOS</h5><p>不同于其他恶意篡改数据或劫持类攻击, <code>DDoS</code> 简单粗暴, 可以达到直接摧毁目标的目的. 另外, 相对其他攻击手段 <code>DDoS</code> 的技术要求和发动攻击的成本很低, 只需要够买部分服务器权限或控制一批肉鸡即可, 而且攻击相应速度很快, 攻击效果可视. 另一方面, <code>DDoS</code> 具有攻击易防守难的特征, 服务提供商为了保证正常客户的需求需要耗费大量的资源才能和攻击发起方进行对抗. 这些特点使得 <code>DDoS</code> 成为黑客们手中的一把很好使的利剑.<br>从另一方面, <code>DDoS</code> 虽然可以侵蚀宽带或资源, 迫使服务中断, 但这远远不是黑客的真正目的. 所谓没有买卖就没有杀害, <code>DDoS</code> 只是黑客手中的一枚核武器, 他们的目的要么是敲诈勒索, 要么是商业竞争, 要么就是表达政治立场, 在这种黑色利益的驱使下, 越来越多的人参与到这个行业并对攻击手段进行改进升级, 致使 <code>DDoS</code> 在互联网行业愈演愈烈, 并成为全球范围内无法攻克的一个顽疾</p>
+<h5 id="DDoS的攻击方式"><a href="#DDoS的攻击方式" class="headerlink" title="DDoS的攻击方式"></a>DDoS的攻击方式</h5><h6 id="资源消耗类攻击"><a href="#资源消耗类攻击" class="headerlink" title="资源消耗类攻击"></a>资源消耗类攻击</h6><p>资源消耗类是比较典型的 <code>DDoS</code> 攻击, 最具代表性的包括: <code>Syn Flood</code>, <code>Ack Flood</code>, <code>UDP Flood</code>. 这类攻击的目标简单, 就是通过大量请求消耗正常的宽带和协议栈处理资源的能力, 从而达到服务端无法正常工作的目的.</p>
+<h6 id="服务消耗性攻击"><a href="#服务消耗性攻击" class="headerlink" title="服务消耗性攻击"></a>服务消耗性攻击</h6><p>相比资源消耗类攻击, 服务消耗类攻击不需要太大的流量, 他主要是针对服务的特点进行精确定点打击, 如 <code>WEB</code> 的 <code>CC</code>, 数据服务的检索, 文件服务的下载等. 这类攻击往往不是为了拥塞流量通道或协议处理通道, 他们是让服务端始终处理高消耗型的业务的忙碌状态, 进而无法对正常业务进行响应</p>
+<h6 id="反射类攻击"><a href="#反射类攻击" class="headerlink" title="反射类攻击"></a>反射类攻击</h6><p>反射攻击也叫放大攻击, 该类攻击以 <code>UDP</code> 协议为主, 一般请求回应的流量远远大于请求本身流量的大小. 攻击者通过流量被放大的特点以较小的流量宽带就可以制造出大规模的流量源, 从而对目标发起攻击. 反射类攻击严格意义上来说不算是攻击的一种, 他只是利用某些服务的业务特征来实现用更小的代价发动 <code>Flood</code> 攻击</p>
+<h6 id="混合型攻击"><a href="#混合型攻击" class="headerlink" title="混合型攻击"></a>混合型攻击</h6><p>混合型攻击是结合上述几种攻击类型, 并在攻击过程中进行探测选择最佳的攻击方式. 混合型攻击往往伴随这资源消耗和服务消耗两种的攻击特征</p>
+<h5 id="DDoS防护困难"><a href="#DDoS防护困难" class="headerlink" title="DDoS防护困难"></a>DDoS防护困难</h5><p>一方面在过去的几十年中, 网络基础设施核心部件从未改变, 这使得一些已经发现和被利用的漏洞以及一些成熟的攻击工具生命周期很长, 即使放到今天也依然有效. 另一方面, 互联网七层模型应用的迅猛发展, 使得 <code>DDoS</code> 的攻击目标多元化, 从 <code>web</code> 到 <code>DNS</code>, 从三层网络到七层应用, 从协议栈到应用 <code>App</code>, 层出不穷的新产品也给了黑客更多的机会和突破点. 在者 <code>DDoS</code> 的防护是一个技术和成本不对等的工程, 往往一个业务的 <code>DDoS</code> 防御系统建设成本要比业务本身的成本或收益更加庞大, 这使得很多创业公司或小型互联网公司不愿意做更多的投入.</p>
+<h5 id="DDoS防护手段"><a href="#DDoS防护手段" class="headerlink" title="DDoS防护手段"></a>DDoS防护手段</h5><h6 id="资源隔离"><a href="#资源隔离" class="headerlink" title="资源隔离"></a>资源隔离</h6><p>资源隔离可以看做是用户服务的一堵防护盾, 这套防护系统拥有无比强大的数据和流量处理能力, 为用户过滤异常流量和请求. 如: 针对 <code>Syn Flood</code>, 防护盾会响应 <code>Syn Cookie</code> 或 <code>Syn Reset</code> 认证, 通过对数据源的认证, 过滤伪造源数据包或发动的攻击, 保护服务端不受恶意连接的侵蚀. 资源隔离系统主要是针对 <code>ISO</code> 模型的第三层和第四层进行防护</p>
+<h6 id="用户规则"><a href="#用户规则" class="headerlink" title="用户规则"></a>用户规则</h6><p>从服务的角度来说 <code>DDoS</code> 防护本质上是一场已用户为主体依赖抗D防护系统与黑客进行较量的战争, 在整个数据对抗过程中服务提供者往往具有绝对的主动权, 用户可以基于抗D系统特定的规则, 如: 流量类型, 请求频率, 数据包特征, 正常业务之间的延长时间间隔等. 基于这些规则用户可以再满足正常服务本身的前提下更好的对抗七层类的 <code>DDoS</code>, 并减少服务端的资源开销</p>
+<h6 id="大数据智能分析"><a href="#大数据智能分析" class="headerlink" title="大数据智能分析"></a>大数据智能分析</h6><p>黑客为了构造大量的数据流, 往往需要通过特定的工具来构造请求数据, 这些数据包不具有正常用户的一些行为特征. 为了对抗这种攻击, 可以基于对海量数据进行分析, 进而对合法用户进行模型化, 并利用这些指纹特征, 如: <code>HTTP</code> 模型特征, 数据来源, 请求源等, 有效的对请求源进行白名单过滤, 从而实现对 <code>DDoS</code> 流量的精确清洗</p>
+<h6 id="资源对抗"><a href="#资源对抗" class="headerlink" title="资源对抗"></a>资源对抗</h6><p>资源对抗也叫 “死扛”, 即通过大量服务器和宽带资源的堆砌达到从容应对 <code>DDoS</code> 流量的效果</p>
+<blockquote><p>参考博文<br>[1] <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/e7a5fdc67b8f">什么是DDOS攻击</a></p>
+</blockquote>
+            
+                <div>
+<ul class="post-copyright" id="copyright">
+  <li class="post-copyright-author">
+  <strong>作者:  </strong><img src="/images/zhuxv.gif" alt="Zhu Xv">Zhu Xv</a>
+  </li>
+  <li class="post-copyright-link">
+  <strong>文章连结:  </strong>
+  <a href="/2020/10/15/常见的几种WEB攻击-DDOS/" target="_blank" title="常见的几种WEB攻击-DDOS">https://zhuxv.github.io/2020/10/15/常见的几种WEB攻击-DDOS/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明:   </strong>
+    本网志所有文章除特别声明外,均采用 <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+    许可协议。转载请注明出处! 如有侵权,请联系,立即处理!
+  </li>
+</ul>
+<div>
+            
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.png" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.png">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.png">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhuxv.github.io/2020/10/15/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8DWEB%E6%94%BB%E5%87%BB-DDOS/&title=《常见的几种WEB攻击-DDOS》 — 小朱的技术博客&pic=images/article/ddos.jpeg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhuxv.github.io/2020/10/15/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8DWEB%E6%94%BB%E5%87%BB-DDOS/&title=《常见的几种WEB攻击-DDOS》 — 小朱的技术博客&source=DDOS什么是DDOS全称 Distributed Denial of Service, 中文意思为 “分布式拒绝服务”, 就是利用大量合法的分布式服务器..." data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://zhuxv.github.io/2020/10/15/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8DWEB%E6%94%BB%E5%87%BB-DDOS/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《常见的几种WEB攻击-DDOS》 — 小朱的技术博客&url=https://zhuxv.github.io/2020/10/15/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8DWEB%E6%94%BB%E5%87%BB-DDOS/&via=https://zhuxv.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://zhuxv.github.io/2020/10/15/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8DWEB%E6%94%BB%E5%87%BB-DDOS/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://zhuxv.github.io/2020/10/15/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8DWEB%E6%94%BB%E5%87%BB-DDOS/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/WEB/" class="color4">WEB</a>
+      
+    <a href="/tags/安全/" class="color3">安全</a>
+      
+    <a href="/tags/DDOS/" class="color5">DDOS</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#DDOS"><span class="post-toc-text">DDOS</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFDDOS"><span class="post-toc-text">什么是DDOS</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#%E9%BB%91%E5%AE%A2%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9DDOS"><span class="post-toc-text">黑客为什么选择DDOS</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#DDoS%E7%9A%84%E6%94%BB%E5%87%BB%E6%96%B9%E5%BC%8F"><span class="post-toc-text">DDoS的攻击方式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#%E8%B5%84%E6%BA%90%E6%B6%88%E8%80%97%E7%B1%BB%E6%94%BB%E5%87%BB"><span class="post-toc-text">资源消耗类攻击</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#%E6%9C%8D%E5%8A%A1%E6%B6%88%E8%80%97%E6%80%A7%E6%94%BB%E5%87%BB"><span class="post-toc-text">服务消耗性攻击</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#%E5%8F%8D%E5%B0%84%E7%B1%BB%E6%94%BB%E5%87%BB"><span class="post-toc-text">反射类攻击</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#%E6%B7%B7%E5%90%88%E5%9E%8B%E6%94%BB%E5%87%BB"><span class="post-toc-text">混合型攻击</span></a></li></ol></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#DDoS%E9%98%B2%E6%8A%A4%E5%9B%B0%E9%9A%BE"><span class="post-toc-text">DDoS防护困难</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#DDoS%E9%98%B2%E6%8A%A4%E6%89%8B%E6%AE%B5"><span class="post-toc-text">DDoS防护手段</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#%E8%B5%84%E6%BA%90%E9%9A%94%E7%A6%BB"><span class="post-toc-text">资源隔离</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#%E7%94%A8%E6%88%B7%E8%A7%84%E5%88%99"><span class="post-toc-text">用户规则</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%99%BA%E8%83%BD%E5%88%86%E6%9E%90"><span class="post-toc-text">大数据智能分析</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#%E8%B5%84%E6%BA%90%E5%AF%B9%E6%8A%97"><span class="post-toc-text">资源对抗</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+  
+    <a href="/2020/09/29/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8DWEB%E6%94%BB%E5%87%BB-XSS/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">常见的几种WEB攻击-XSS</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2020 Zhu Xv<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://zhuxv.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/MVC/">MVC</a><a class="category-link" href="/categories/MySQL/">MySQL</a><a class="category-link" href="/categories/PHP/">PHP</a><a class="category-link" href="/categories/REDIS/">REDIS</a><a class="category-link" href="/categories/WEB%E5%AE%89%E5%85%A8/">WEB安全</a><a class="category-link" href="/categories/%E6%9C%8D%E5%8A%A1/">服务</a><a class="category-link" href="/categories/%E6%9E%B6%E6%9E%84/">架构</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/DDOS/" style="font-size: 10px;">DDOS</a> <a href="/tags/MVC/" style="font-size: 10px;">MVC</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/REDIS/" style="font-size: 10px;">REDIS</a> <a href="/tags/RESTful/" style="font-size: 10px;">RESTful</a> <a href="/tags/SQL%E6%B3%A8%E5%85%A5/" style="font-size: 10px;">SQL注入</a> <a href="/tags/WEB/" style="font-size: 15px;">WEB</a> <a href="/tags/XSS/" style="font-size: 10px;">XSS</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 10px;">字符串</a> <a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 15px;">安全</a> <a href="/tags/%E6%95%B0%E7%BB%84/" style="font-size: 10px;">数组</a> <a href="/tags/%E6%9C%8D%E5%8A%A1/" style="font-size: 10px;">服务</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 10px;">架构</a> <a href="/tags/%E7%BB%83%E4%B9%A0%E9%A2%98/" style="font-size: 20px;">练习题</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>首页</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>归档</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/DDOS/" style="font-size: 10px;">DDOS</a> <a href="/tags/MVC/" style="font-size: 10px;">MVC</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/PHP/" style="font-size: 15px;">PHP</a> <a href="/tags/REDIS/" style="font-size: 10px;">REDIS</a> <a href="/tags/RESTful/" style="font-size: 10px;">RESTful</a> <a href="/tags/SQL%E6%B3%A8%E5%85%A5/" style="font-size: 10px;">SQL注入</a> <a href="/tags/WEB/" style="font-size: 15px;">WEB</a> <a href="/tags/XSS/" style="font-size: 10px;">XSS</a> <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" style="font-size: 10px;">字符串</a> <a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 15px;">安全</a> <a href="/tags/%E6%95%B0%E7%BB%84/" style="font-size: 10px;">数组</a> <a href="/tags/%E6%9C%8D%E5%8A%A1/" style="font-size: 10px;">服务</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 10px;">架构</a> <a href="/tags/%E7%BB%83%E4%B9%A0%E9%A2%98/" style="font-size: 20px;">练习题</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/Epsilon2.1.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>

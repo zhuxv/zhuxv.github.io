@@ -100,6 +100,10 @@ td {
 a img {
   border: none;
 }
+.imgs {
+  margin: auto;
+  display: block;
+}
 input,
 button {
   margin: 0;
